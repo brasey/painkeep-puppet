@@ -1,0 +1,101 @@
+sv_gamedir painkeep
+serverinfo rj 11
+serverinfo admin        "<%= scope['params::contact_email'] %>"
+serverinfo url          "<%= scope['params::contact_url'] %>"
+pausable 0
+maxspectators 5
+
+setmaster   "192.246.40.12:27000"
+setmaster		"qwmaster.ocrana.de:27000"
+setmaster		"masterserver.exhale.de:27000"
+setmaster		"qwmaster.fodquake.net:27000"	
+setmaster   "master.quakeservers.net"
+
+deathmatch 3
+teamplay 0
+samelevel 3
+
+hostname "<%= scope['params::banner'] %>"
+
+timelimit 10
+fraglimit 0
+maxclients 12
+watervis "1"
+floodprot 10 1 1
+floodprotmsg "STFU!"
+rcon_password "<%= scope['params::rcon_password'] %>"
+
+//Powerup behaviour
+serverinfo dq 1       //Drop Quad
+serverinfo dr 1       //Drop invisibility ring
+serverinfo maxfps 77  // maxfps
+
+localinfo vwep 1 		  // turn on viewable player weapons 0=off
+localinfo record 1		//turn on server demo recording
+
+sv_maxrate 10000
+sv_mapcheck 0
+sv_MegaTFHacks    0
+
+//MVDSV Server stuff
+sv_demodir "<%= scope['params::demodir'] %>"   
+sv_demofps "30" 					
+sv_demoMaxSize 8192				//max demo size in bytes 	
+sv_demoMaxDirSize 512000 	// max demos folder size in kB - 768000 is 3/4 of a gig roughly
+sv_demoClearOld 24				// delete 24 demos when demodir if full
+sv_demotxt "1"
+sv_demoPrefix ""
+sv_demonovis 1
+sv_demoUseCache 0
+
+sv_kicktop                   0   
+
+master_rcon_password "<%= scope['params::rcon_password'] %>"
+sv_default_name "<%= scope['params::default_playername'] %>"
+sv_nailhack "1"
+sv_speedcheck 1
+sv_maxdownloadrate "8000" //sends files to client at 8kB *if* client has rate high enough. *may kill upload bandwidth!*
+
+allow_download_skins 1
+allow_download_models 1
+allow_download_sounds 1
+allow_download_maps 1
+allow_download_demos 1
+allow_download_pakmaps 1  // allow pak map downloads from server (0 = no, 1 = yes)
+allow_download_other 1
+
+//banned people
+addip 199.167  //ServeMe Bot
+
+sv_maxvelocity 2000		// was 1300
+sv_maxspeed	400
+sv_specprint 1        // show spectators some info (1 = centerprint, 2 = sprint, 4 = stuffcmd)
+sv_waterfriction 3
+
+// 0 - Jump physics are identical to NetQuake's and vanilla QuakeWorld's.
+// 1 - Jump physics are identical to KTeams 2.10 and higher.
+// 0.5 - A blend 0 and 1. Pm_kjump affects how high you can jump from a slope if you're moving down the slope.
+pm_ktjump "0.7"
+ 
+//Logging
+sv_logdir "logs"
+frag_log_type  1
+qconsole_log_say  1
+sv_maxlogsize 16840 
+log 1
+
+//sv_progsname "1v1"
+sv_progsname "qwprogs"
+//sv_progsname "burrito_mode"
+
+qtv_maxstreams 0
+
+sv_crypt_rcon 0
+
+//map rotation
+exec fastrotation.cfg
+//exec covrotation.cfg
+
+logrcon "1"
+
+sv_serverip 				"184.58.71.144:27500"							//Dynamic!!  UPDATE MANUALLY
