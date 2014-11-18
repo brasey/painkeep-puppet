@@ -88,7 +88,7 @@ class painkeep {
   }
 
   exec { 'explode qw dir tarball':
-    command     => "${painkeep::params::tar} xzf /tmp/qwdir.tgz -d ${painkeepdir}",
+    command     => "${painkeep::params::tar} xzf /tmp/qwdir.tgz -P ${painkeepdir}",
     user        => 'painkeep',
     creates     => "${painkeepdir}/qw/textures",
     require     => Wget::Fetch[ 'fetch qw dir tarball' ],
