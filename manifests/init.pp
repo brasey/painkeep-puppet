@@ -35,6 +35,10 @@ class painkeep {
     verbose     => false,
   }
 
+  package { $painkeep::params::unzip_package:
+    ensure      => latest,
+  }
+
   file { [
           '/srv',
           $painkeepdir,
