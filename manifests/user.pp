@@ -7,8 +7,6 @@ class painkeep::user {
 
   user { 'painkeep':
     ensure    => present,
-    uid       => '1001',
-    gid       => '1001',
     comment   => 'Painkeep service account',
     password  => '!',
     shell     => '/sbin/nologin',
