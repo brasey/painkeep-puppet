@@ -1,5 +1,16 @@
 class painkeep::params {
 
+# Some file paths that you may have to set for your OS
+
+  case $::operatingsystem {
+    default:  {
+      $unzip  = '/usr/bin/unzip'
+      $chown  = '/usr/bin/chown'
+      $test   = '/usr/bin/test'
+      $monit  = 'monit'
+    }
+  }
+
   $painkeepdir        = hiera('painkeepdir', '/srv/painkeep')
   $idpak0url          = hiera('idpak0url')
   $idpak1url          = hiera('idpak1url')

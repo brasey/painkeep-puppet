@@ -17,6 +17,7 @@
 class painkeep {
 
   include wget
+  include painkeep::service
 
   require painkeep::params
   require painkeep::user
@@ -34,18 +35,6 @@ class painkeep {
     verbose     => false,
   }
 
-
-# Some file paths that you may have to set for your OS
-
-  case $::operatingsystem {
-    default:  {
-      $unzip  = '/usr/bin/unzip'
-      $chown  = '/usr/bin/chown'
-      $test   = '/usr/bin/test'
-      $monit  = 'monit'
-    }
-  }
-
   file { [
           '/srv',
           $painkeepdir,
@@ -56,7 +45,6 @@ class painkeep {
     ensure      => directory,
     mode        => '0775',
   }
-
 
 # The id Software pak files from Quake are licensed software.
 # Include a link URL to each of these in a hiera file.
@@ -84,7 +72,7 @@ class painkeep {
   }
 
   exec { 'explode Painkeep monster zip':
-    command     => "${unzip} /tmp/${painkeep::params::painkeepzipfile} -d ${painkeepdir}",
+    command     => "${painkeep::params::unzip} /tmp/${painkeep::params::painkeepzipfile} -d ${painkeepdir}",
     user        => 'painkeep',
     creates     => "${painkeepdir}/Painkeep/vwep.pk3",
     require     => Wget::Fetch[ 'fetch Painkeep monster zip' ],
@@ -100,7 +88,7 @@ class painkeep {
   }
 
   exec { 'explode qw dir tarball':
-    command     => "${unzip} /tmp/qwdir.tgz -d ${painkeepdir}",
+    command     => "${painkeep::params::unzip} /tmp/qwdir.tgz -d ${painkeepdir}",
     user        => 'painkeep',
     creates     => "${painkeepdir}/qw/textures",
     require     => Wget::Fetch[ 'fetch qw dir tarball' ],
@@ -175,34 +163,19 @@ class painkeep {
     source      => 'puppet:///modules/painkeep/painkeep-initscript',
   }
 
-  service { 'painkeep':
-    ensure      => running,
-    enable      => true,
-    hasstatus   => true,
-    require     => File[ '/etc/init.d/painkeep' ],
-  }
-
 
 # We need to install and configure monit
 # There's a bug when the harpoon sticks in a door or lift that
 # sometimess causes the server to crash.
 
-  package { $monit:
+  package { $painkeep::params::monit:
     ensure      => latest,
   }
 
   file { '/etc/monit.d/painkeep':
     ensure      => file,
     source      => 'puppet:///modules/painkeep/painkeep-monit',
-    require     => Package[ $monit ],
-  }
-
-  service { $monit:
-    ensure      => running,
-    enable      => true,
-    hasstatus   => true,
-    hasrestart  => true,
-    require     => File[ '/etc/monit.d/painkeep' ],
+    require     => Package[ $painkeep::params::monit ],
   }
 
 }
