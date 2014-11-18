@@ -5,6 +5,7 @@ class painkeep::params {
   case $::operatingsystem {
     default:  {
       $unzip  = '/usr/bin/unzip'
+      $tar    = '/usr/bin/tar'
       $chown  = '/usr/bin/chown'
       $test   = '/usr/bin/test'
       $monit  = 'monit'
