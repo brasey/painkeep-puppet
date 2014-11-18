@@ -45,7 +45,7 @@ sudo service painkeep stop
 sudo service painkeep status
 ```
 
-Monit is configured to watch and restart the painkeep service if it stops. This is necessary due to a bug in the harpoon code that crashes the server every so often.
+systemd is configured to watch and restart the painkeep service if it stops. This is necessary due to a bug in the harpoon code that crashes the server every so often.
 
 
 ### Setup Requirements
