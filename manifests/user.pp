@@ -2,7 +2,6 @@ class painkeep::user {
 
   group { 'painkeep':
     ensure  => present,
-    gid     => '1001',
   }
 
   user { 'painkeep':
