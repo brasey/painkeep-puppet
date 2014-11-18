@@ -62,13 +62,13 @@ class painkeep {
 # Include a link URL to each of these in a hiera file.
 
   wget::fetch { 'fetch id pak0.pak':
-    source      => $idpak0url,
+    source      => $painkeep::params::idpak0url,
     destination => "${painkeepdir}/id1/pak0.pak",
     require     => File[ $painkeepdir ],
   }
 
   wget::fetch { 'fetch id pak1.pak':
-    source      => $idpak1url,
+    source      => $painkeep::params::idpak1url,
     destination => "${painkeepdir}/id1/pak1.pak",
     require     => File[ $painkeepdir ],
   }
@@ -78,13 +78,13 @@ class painkeep {
 # Thanks SH!
 
   wget::fetch { 'fetch Painkeep monster zip':
-    source      => 'https://www.dropbox.com/s/lr2l7kskrqstcgm/pk666_maps_skins_etc.zip',
-    destination => '/tmp/pk666_maps_skins_etc.zip',
+    source      => $painkeep::params::painkeepzipurl,
+    destination => "/tmp/${painkeep::params::painkeepzipfile}",
     require     => File[ $painkeepdir ],
   }
 
   exec { 'explode Painkeep monster zip':
-    command     => "${unzip} /tmp/pk666_maps_skins_etc.zip -d ${painkeepdir}",
+    command     => "${unzip} /tmp/${painkeep::params::painkeepzipfile} -d ${painkeepdir}",
     user        => 'painkeep',
     creates     => "${painkeepdir}/Painkeep/vwep.pk3",
     require     => Wget::Fetch[ 'fetch Painkeep monster zip' ],

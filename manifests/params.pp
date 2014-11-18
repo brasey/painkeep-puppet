@@ -3,6 +3,8 @@ class painkeep::params {
   $painkeepdir        = hiera('painkeepdir', '/srv/painkeep')
   $idpak0url          = hiera('idpak0url')
   $idpak1url          = hiera('idpak1url')
+  $painkeepzipurl     = hiera('painkeepzipurl')
+  $painkeepzipfile    = inline_template('<%= File.basename(@painkeepzipurl) %>')
   $contact_email      = hiera('contact_email')
   $contact_url        = hiera('contact_url')
   $banner             = hiera('banner')
