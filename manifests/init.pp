@@ -156,14 +156,14 @@ class painkeep {
   }
 
 
-# And an init script to make it go and stop
+# And a systemd service file to make it go and stop
 
-  file { '/etc/init.d/painkeep':
+  file { '/usr/lib/systemd/system/painkeep.service':
     ensure      => file,
     owner       => 'root',
     group       => 'root',
-    mode        => '0775',
-    source      => 'puppet:///modules/painkeep/painkeep-initscript',
+    mode        => '0644',
+    source      => 'puppet:///modules/painkeep/painkeep.service',
   }
 
 
