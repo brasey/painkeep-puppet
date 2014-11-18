@@ -33,7 +33,7 @@ I've written this Puppetry to run on Linux, and it has only been tested on Fedor
 
 ## Setup
 
-### What [painkeep] affects
+### What painkeep affects
 
 The server binaries will go in /srv/painkeep.
 
@@ -45,7 +45,7 @@ sudo service painkeep stop
 sudo service painkeep status
 ```
 
-There is a weekly cron job that restarts the server. This is necessary due to a bug in the harpoon code that crashes the server every so often.
+Monit is configured to watch and restart the painkeep service if it stops. This is necessary due to a bug in the harpoon code that crashes the server every so often.
 
 
 ### Setup Requirements
@@ -56,6 +56,8 @@ Puppet Forge modules:
 Quake is still licensed software. To run a Quake server, you'll need a couple of files from your original Quake install media:
   * id/pak0.pak
   * id/pak1.pak
+
+They need to live somewhere that can be reached by a wget, like a web server or Dropbox or ownCloud or something.
 
 A hieradata file that holds a few key value pairs and a user definition. It should look like this:
 
@@ -70,28 +72,24 @@ banner: 'Weenieville Painkeep Modified'
 rcon_password: 'password'
 demodir: '/pkdemos'
 default_playername: 'turdburglar'
-
-
-painkeep_users:
-  painkeep:
-    ensure: present
-    uid: 1001
-    gid: 1001
-    comment: 'Painkeep service account'
-    groups:
-      - painkeep
-    managehome: false
-    password: '!'
-    shell: '/usr/sbin/nologin'
 ```
 
 	
-### Beginning with [painkeep]	
+### Beginning with painkeep
 
-Once you have that yaml file set up, make sure it's in the same place as the modules. Then, you should be able to run
+1. Make that yaml file and put it at /var/lib/hiera/paikeep.yaml.
+2. Put this in /etc/puppet/hiera.yaml
+
+```YAML
+---
+:hierarchy:
+  - painkeep
+```
+
+3. Then, you should be able to run
 
 ```shell
-puppet apply --modulepath=/path/to/modules --hiera_config=/path/to/modules/hiera.yaml /path/to/site.pp
+puppet apply --modulepath=/path/to/modules /path/to/site.pp
 ```
 
 and have a Painkeep server up and running in a jif.
