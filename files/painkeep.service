@@ -9,6 +9,11 @@ User=painkeep
 Group=painkeep
 WorkingDirectory=/srv/painkeep
 ExecStart=/srv/painkeep/mvdsv -mem 128 +gamedir Painkeep -port 27500 +exec server.cfg -nopriority -noerrormsgbox +logrcon +logplayers +logerrors
+WatchdogSec=30s
+Restart=on-failure
+StartLimitInterval=5min
+StartLimitBurst=4
+StartLimitAction=reboot-force
 
 # Give a reasonable amount of time for the server to start up/shut down
 TimeoutSec=60

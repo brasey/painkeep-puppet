@@ -166,19 +166,4 @@ class painkeep {
     source      => 'puppet:///modules/painkeep/painkeep.service',
   }
 
-
-# We need to install and configure monit
-# There's a bug when the harpoon sticks in a door or lift that
-# sometimess causes the server to crash.
-
-  package { $painkeep::params::monit:
-    ensure      => latest,
-  }
-
-  file { '/etc/monit.d/painkeep':
-    ensure      => file,
-    source      => 'puppet:///modules/painkeep/painkeep-monit',
-    require     => Package[ $painkeep::params::monit ],
-  }
-
 }

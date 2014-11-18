@@ -10,11 +10,4 @@ class painkeep::service {
     hasrestart  => true,
   }
 
-  service { $painkeep::params::monit:
-    ensure      => running,
-    enable      => true,
-    hasstatus   => true,
-    hasrestart  => true,
-  }
-
 }
