@@ -7,6 +7,7 @@ class painkeep::service {
     ensure      => running,
     enable      => true,
     hasstatus   => true,
+    hasrestart  => true,
   }
 
   service { $painkeep::params::monit:
