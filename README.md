@@ -4,8 +4,8 @@
 
 1. [Overview](#overview)
 2. [Module Description - What the module does and why it is useful](#module-description)
-3. [Setup - The basics of getting started with painkeep](#setup)
-    * [What painkeep affects](#what-puppet-affects)
+3. [Setup](#setup)
+    * [What painkeep affects](#what-painkeep-affects)
     * [Setup requirements](#setup-requirements)
     * [Beginning with painkeep](#beginning-with-painkeep)
 4. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
