@@ -160,6 +160,9 @@ class painkeep {
 
   file { '/etc/init.d/painkeep':
     ensure      => file,
+    owner       => 'root',
+    group       => 'root',
+    mode        => '0775',
     source      => 'puppet:///modules/painkeep/painkeep-initscript',
   }
 
