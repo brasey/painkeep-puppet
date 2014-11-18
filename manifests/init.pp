@@ -193,7 +193,7 @@ class painkeep {
 
   file { '/etc/monit.d/painkeep':
     ensure      => file,
-    source      => 'puppet:///painkeep/painkeep-monit',
+    source      => 'puppet:///modules/painkeep/painkeep-monit',
     require     => Package[ $monit ],
   }
 
