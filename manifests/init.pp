@@ -79,7 +79,8 @@ class painkeep {
     command     => "${painkeep::params::unzip} /tmp/${painkeep::params::painkeepzipfile} -d ${painkeepdir}",
     user        => 'painkeep',
     creates     => "${painkeepdir}/Painkeep/vwep.pk3",
-    require     => Wget::Fetch[ 'fetch Painkeep monster zip' ],
+    require     => [ Wget::Fetch[ 'fetch Painkeep monster zip' ],
+                    Package[ $painkeep::params::unzip_package ] ],
   }
 
 
