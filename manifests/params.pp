@@ -9,6 +9,7 @@ class painkeep::params {
       $tar            = '/usr/bin/tar'
       $chown          = '/usr/bin/chown'
       $test           = '/usr/bin/test'
+      $glibc          = 'glibc.i686'
     }
   }
 

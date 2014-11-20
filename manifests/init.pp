@@ -21,6 +21,7 @@ class painkeep {
 
   require painkeep::params
   require painkeep::user
+  require painkeep::prereqs
 
   $painkeepdir = $painkeep::params::painkeepdir
 
@@ -33,10 +34,6 @@ class painkeep {
   Wget::Fetch {
     timeout     => 0,
     verbose     => false,
-  }
-
-  package { $painkeep::params::unzip_package:
-    ensure      => latest,
   }
 
   file { [
