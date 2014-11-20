@@ -17,6 +17,7 @@
 class painkeep {
 
   include wget
+  include firewalld
   include painkeep::service
 
   require painkeep::params
@@ -166,6 +167,15 @@ class painkeep {
     group       => 'root',
     mode        => '0644',
     source      => 'puppet:///modules/painkeep/painkeep.service',
+  }
+
+# Open a port in the firewall
+
+  class { 'firewalld::zone::public':
+    ports => [{
+                port      => '27500',
+                protocol  => 'udp',
+    }]
   }
 
 }
