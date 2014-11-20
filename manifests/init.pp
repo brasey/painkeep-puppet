@@ -171,7 +171,7 @@ class painkeep {
 
 # Open a port in the firewall
 
-  class { 'firewalld::zone':
+  class { 'firewalld::configuration':
     default_zone  => 'public',
   }
 
