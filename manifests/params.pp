@@ -7,8 +7,6 @@ class painkeep::params {
       $unzip          = '/usr/bin/unzip'
       $unzip_package  = 'unzip'
       $tar            = '/usr/bin/tar'
-      $chown          = '/usr/bin/chown'
-      $test           = '/usr/bin/test'
       $glibc          = 'glibc.i686'
     }
   }
