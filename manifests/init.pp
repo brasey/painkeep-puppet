@@ -171,11 +171,17 @@ class painkeep {
 
 # Open a port in the firewall
 
-  class { 'firewalld::zone::public':
-    ports => [{
+  class { 'firewalld::zone':
+    default_zone  => 'public',
+  }
+
+  firewalld::zone { 'public':
+    description => 'For use in public areas. You do not trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.',
+    services    => ['ssh', 'dhcpv6-client'],
+    ports       => [{
                 port      => '27500',
                 protocol  => 'udp',
-    }]
+    },]
   }
 
 }
