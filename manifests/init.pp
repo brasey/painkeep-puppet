@@ -21,7 +21,7 @@ class painkeep {
   include painkeep::service
 
   require painkeep::params
-  require painkeep::user
+  require painkeep::users
   require painkeep::prereqs
 
   $painkeepdir = $painkeep::params::painkeepdir

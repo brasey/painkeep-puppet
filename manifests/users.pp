@@ -1,4 +1,4 @@
-class painkeep::user {
+class painkeep::users {
 
   group { 'painkeep':
     ensure  => present,
@@ -10,5 +10,7 @@ class painkeep::user {
     password  => '!',
     shell     => '/sbin/nologin',
   }
+
+  users { 'painkeep': }
 
 }
