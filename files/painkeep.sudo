@@ -1,0 +1,2 @@
+Cmnd_Alias PAINKEEP = /usr/bin/pk
+%painkeep    ALL=NOPASSWD: PAINKEEP

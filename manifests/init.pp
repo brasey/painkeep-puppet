@@ -169,6 +169,24 @@ class painkeep {
     source      => 'puppet:///modules/painkeep/painkeep.service',
   }
 
+# A script to wrap the service and sudo file to grant access
+
+  file { '/usr/bin/pk':
+    ensure      => file,
+    owner       => 'root',
+    group       => 'root',
+    mode        => '0775',
+    source      => 'puppet:///modules/painkeep/pk',
+  }
+
+  file { '/etc/sudoers.d/painkeep':
+    ensure      => file,
+    owner       => 'root',
+    group       => 'root',
+    mode        => '0664',
+    source      => 'puppet:///modules/painkeep/painkeep.sudo',
+  }
+
 # Open a port in the firewall
 
   class { 'firewalld::configuration':

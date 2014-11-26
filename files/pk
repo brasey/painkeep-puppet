@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ $1 ]]; then
+  ACTION=$1
+else
+  /usr/bin/echo 'provide one argument [ start | stop | restart | status ]'
+  exit 1
+fi
+
+/usr/bin/systemctl $ACTION painkeep.service
