@@ -33,7 +33,7 @@ serverinfo maxfps 77  // maxfps
 localinfo vwep 1 		  // turn on viewable player weapons 0=off
 localinfo record 1		//turn on server demo recording
 
-sv_maxrate 10000
+sv_maxrate 100000
 sv_mapcheck 0
 sv_MegaTFHacks    0
 
@@ -54,7 +54,7 @@ master_rcon_password "<%= scope['params::rcon_password'] %>"
 sv_default_name "<%= scope['params::default_playername'] %>"
 sv_nailhack "1"
 sv_speedcheck 1
-sv_maxdownloadrate "8000" //sends files to client at 8kB *if* client has rate high enough. *may kill upload bandwidth!*
+sv_maxdownloadrate "100000" //sends files to client at 8kB *if* client has rate high enough. *may kill upload bandwidth!*
 
 allow_download_skins 1
 allow_download_models 1
@@ -98,4 +98,4 @@ exec fastrotation.cfg
 
 logrcon "1"
 
-sv_serverip 				"184.58.71.144:27500"							//Dynamic!!  UPDATE MANUALLY
+//sv_serverip 				"184.58.71.144:27500"							//Dynamic!!  UPDATE MANUALLY
